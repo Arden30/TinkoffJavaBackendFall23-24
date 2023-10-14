@@ -1,5 +1,5 @@
-![Build Status](https://github.com/sanyarnd/java-course-2023/actions/workflows/build.yml/badge.svg)
+![Build Status](https://github.com/Arden30/TinkoffJavaBackend23-24/actions/workflows/build.yml/badge.svg)
 
 Домашние задания курса https://fintech.tinkoff.ru/academy/java
 
-Студент: Арсеньев Денис Егорович
+Студент: `Арсеньев Денис Егорович`
