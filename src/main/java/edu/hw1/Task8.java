@@ -6,31 +6,19 @@ public class Task8 {
 
     }
 
-    @SuppressWarnings({"CyclomaticComplexity", "ReturnCount"})
+    private final static int[][] COMBINATIONS =
+        {{1, -2}, {1, 2}, {2, -1}, {2, 1}, {-1, -2}, {-1, 2}, {-2, -1}, {-2, 1}};
+
     public static boolean knightBoardCapture(int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 if (arr[i][j] == 1) {
-                    if (i + 1 <= arr.length - 1 && j - 2 >= 0 && arr[i][j] == arr[i + 1][j - 2]) {
-                        return false;
-                    } else if (i + 1 <= arr.length - 1 && j + 2 <= arr[i].length - 1
-                        && arr[i][j] == arr[i + 1][j + 2]) {
-                        return false;
-                    } else if (i + 2 <= arr.length - 1 && j - 1 >= 0 && arr[i][j] == arr[i + 2][j - 1]) {
-                        return false;
-                    } else if (i + 2 <= arr.length - 1 && j + 1 <= arr[i].length - 1
-                        && arr[i][j] == arr[i + 2][j + 1]) {
-                        return false;
-                    } else if (i - 1 >= 0 && j + 2 <= arr[i].length - 1
-                        && arr[i][j] == arr[i - 1][j + 2]) {
-                        return false;
-                    } else if (i - 1 >= 0 && j - 2 >= 0 && arr[i][j] == arr[i - 1][j - 2]) {
-                        return false;
-                    } else if (i - 2 >= 0 && j - 1 >= 0 && arr[i][j] == arr[i - 2][j - 1]) {
-                        return false;
-                    } else if (i - 2 >= 0 && j + 1 <= arr[i].length - 1
-                        && arr[i][j] == arr[i - 2][j + 1]) {
-                        return false;
+                    for (int[] combination : COMBINATIONS) {
+                        if ((i + combination[0] < arr.length - 1 && i + combination[0] >= 0)
+                            && (j + combination[1] < arr[i].length - 1 && j + combination[1] >= 0)
+                            && arr[i][j] == arr[i + combination[0]][j + combination[1]]) {
+                            return false;
+                        }
                     }
                 }
             }

@@ -10,7 +10,7 @@ public class Task5 {
 
     public static boolean isPalindromeDescendant(int x) {
         int num = x;
-        String res = Integer.toString(num);
+        StringBuilder res = new StringBuilder(Integer.toString(num));
         if (res.length() == 1) {
             return true;
         }
@@ -22,20 +22,20 @@ public class Task5 {
             if (palindrome(res)) {
                 return true;
             }
-            num = Integer.parseInt(res);
-            res = "";
+            num = Integer.parseInt(res.toString());
+            res.delete(0, res.length());
             while (num > 0) {
                 int first = num % DIVIDER;
                 num /= DIVIDER;
                 int second = num % DIVIDER;
                 num /= DIVIDER;
-                res = (first + second) + res;
+                res.append(first + second);
             }
         }
         return false;
     }
 
-    public static boolean palindrome(String res) {
+    public static boolean palindrome(StringBuilder res) {
         for (int i = 0, j = res.length() - 1; i < res.length() / 2; i++, j--) {
             if (res.charAt(i) != res.charAt(j)) {
                 return false;

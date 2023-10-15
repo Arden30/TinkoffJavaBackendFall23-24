@@ -1,6 +1,7 @@
 package edu.hw1;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Task6 {
 
@@ -26,22 +27,22 @@ public class Task6 {
     }
 
     public static int increase(int n) {
-        char[] arr = Integer.toString(n).toCharArray();
+        String[] arr = Integer.toString(n).split("");
         Arrays.sort(arr);
-        String res = "";
-        for (char x : arr) {
-            res += x;
+        StringBuilder res = new StringBuilder();
+        for (String x : arr) {
+            res.append(x);
         }
-        return Integer.parseInt(res);
+        return Integer.parseInt(res.toString());
     }
 
     public static int decrease(int n) {
-        char[] arr = Integer.toString(n).toCharArray();
-        Arrays.sort(arr);
-        String res = "";
-        for (int i = arr.length - 1; i >= 0; i--) {
-            res += arr[i];
+        String[] arr = Integer.toString(n).split("");
+        Arrays.sort(arr, Collections.reverseOrder());
+        StringBuilder res = new StringBuilder();
+        for (String x : arr) {
+            res.append(x);
         }
-        return Integer.parseInt(res);
+        return Integer.parseInt(res.toString());
     }
 }
