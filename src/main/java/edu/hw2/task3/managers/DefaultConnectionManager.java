@@ -5,20 +5,15 @@ import edu.hw2.task3.connections.FaultyConnection;
 import edu.hw2.task3.connections.StableConnection;
 
 public class DefaultConnectionManager implements ConnectionManager {
-
-    private final double chance;
-    private static final double CHECKER = 0.7;
-
-    public DefaultConnectionManager(double chance) {
-        this.chance = chance;
-    }
+    private static final double LIMIT = 0.09;
 
     @Override
     public Connection getConnection() {
-        if (chance <= CHECKER) {
+        if (Math.random() >= LIMIT) {
             return new StableConnection();
         } else {
-            return new FaultyConnection(chance);
+            return new FaultyConnection();
         }
     }
+
 }
