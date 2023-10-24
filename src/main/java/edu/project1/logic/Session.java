@@ -16,7 +16,7 @@ public class Session {
         Arrays.fill(userAnswer, '*');
     }
 
-    @NotNull GuessResult guess(char guess) {
+    @NotNull public GuessResult guess(char guess) {
         for (int i = 0; i < answer.length(); i++) {
             if (guess == answer.charAt(i)) {
                 for (int j = 0; j < userAnswer.length; j++) {
@@ -24,7 +24,7 @@ public class Session {
                         userAnswer[j] = guess;
                     }
                 }
-                if (!new String(userAnswer).contains("*")) {
+                if (!String.valueOf(userAnswer).contains("*")) {
                     return new GuessResult.Win(attempts, maxAttempts, userAnswer);
                 }
                 return new GuessResult.SuccessfulGuess(attempts, maxAttempts, userAnswer);
@@ -36,11 +36,11 @@ public class Session {
         return new GuessResult.FailedGuess(attempts, maxAttempts, userAnswer);
     }
 
-    @NotNull GuessResult giveUp() {
+    public @NotNull GuessResult giveUp() {
         return new GuessResult.ExitGuess(attempts, maxAttempts, userAnswer);
     }
 
-    @NotNull GuessResult incorrect() {
+    @NotNull public GuessResult incorrect() {
         return new GuessResult.TypoGuess(attempts, maxAttempts, userAnswer);
     }
 

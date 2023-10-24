@@ -11,8 +11,6 @@ public sealed interface GuessResult {
 
     @NotNull String message();
 
-    String WORD = "The word: ";
-
     record Defeat(int attempt, int maxAttempts, char[] state) implements GuessResult {
 
         @Override
@@ -26,14 +24,16 @@ public sealed interface GuessResult {
     record Win(int attempt, int maxAttempts, char[] state) implements GuessResult {
         @Override
         public @NotNull String message() {
-            return WORD + new String(state()) + "\n\nYou won!";
+            String userAnswer = "You guessed the word: " + String.valueOf(state()) + "\n\n";
+            return userAnswer + "You won!";
         }
     }
 
     record SuccessfulGuess(int attempt, int maxAttempts, char[] state) implements GuessResult {
         @Override
         public @NotNull String message() {
-            return "Hit!\n" + WORD + String.join("", new String(state())) + "\n";
+            String userAnswer = "The word: " + String.valueOf(state()) + "\n";
+            return "Hit!\n" + userAnswer;
         }
 
     }
@@ -41,8 +41,8 @@ public sealed interface GuessResult {
     record FailedGuess(int attempt, int maxAttempts, char[] state) implements GuessResult {
         @Override
         public @NotNull String message() {
-            return "Missed, mistake " + attempt() + " out of " + maxAttempts() + "\n" + WORD
-                + String.join("", new String(state())) + "\n";
+            return "Missed, mistake " + attempt() + " out of " + maxAttempts() + "\n"
+                + String.valueOf(state()) + "\n";
         }
 
     }
@@ -50,7 +50,7 @@ public sealed interface GuessResult {
     record TypoGuess(int attempt, int maxAttempts, char[] state) implements GuessResult {
         @Override
         public @NotNull String message() {
-            return "Enter only 1 symbol!" + "\n";
+            return "Enter only 1 symbol!\n";
         }
     }
 
