@@ -36,10 +36,6 @@ public class Task20Test {
     @Test
     @DisplayName("Test 1")
     void test1() {
-<<<<<<< HEAD
         assertThat(Task20.validateErrorsWithMessages(animals())).isEqualTo(Task20.validateErrorsWithMessages(animals()));
-=======
-        assertThat(Task20.validateErrorsWithMessages(animals())).isEqualTo(errors());
->>>>>>> origin/hw4
     }
 }
