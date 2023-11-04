@@ -17,43 +17,34 @@ public class Task19 {
 
     }
 
-    private static boolean error = false;
     public final static ValidationError NAME_ERROR = new NameError("Name must have letters only");
     public final static ValidationError AGE_ERROR = new AgeError("Age is a positive number");
     public final static ValidationError HEIGHT_ERROR = new HeightError("Height is a positive number");
     public final static ValidationError WEIGHT_ERROR = new WeightError("Weight is a positive number");
 
-    public static boolean isError(Animal animal) {
-        getError(animal);
-        return error;
-    }
-
     public static Set<ValidationError> getError(Animal animal) {
         Set<ValidationError> errors = new HashSet<>();
-        error = false;
 
         if (!animal.name().matches("[a-zA-Z]+")) {
             errors.add(NAME_ERROR);
-            error = true;
         }
         if (animal.age() <= 0) {
             errors.add(AGE_ERROR);
-            error = true;
         }
         if (animal.height() <= 0) {
             errors.add(HEIGHT_ERROR);
-            error = true;
         }
         if (animal.weight() <= 0) {
             errors.add(WEIGHT_ERROR);
-            error = true;
         }
         return errors;
     }
 
     public static Map<String, Set<ValidationError>> validateErrors(List<Animal> list) {
         return list.stream()
-            .filter(Task19::isError)
-            .collect(Collectors.toMap(Animal::name, Task19::getError));
+            .collect(Collectors.toMap(Animal::name, Task19::getError))
+            .entrySet().stream()
+            .filter(err -> !err.getValue().isEmpty())
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }
