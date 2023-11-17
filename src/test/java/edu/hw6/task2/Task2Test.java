@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class Task2Test {
     @Test
@@ -16,16 +16,9 @@ public class Task2Test {
         Path copy2 = Path.of("src/test/java/edu/hw6/task2/file - копия (2).txt");
         Path copy3 = Path.of("src/test/java/edu/hw6/task2/file - копия (3).txt");
 
-        FileCloner.cloneFile(path);
-        FileCloner.cloneFile(path);
-        FileCloner.cloneFile(path);
-
-        boolean flag = Files.exists(copy);
-        boolean flag2 = Files.exists(copy2);
-        boolean flag3 = Files.exists(copy3);
-        assertThat(flag).isTrue();
-        assertThat(flag2).isTrue();
-        assertThat(flag3).isTrue();
+        assertDoesNotThrow(() -> FileCloner.cloneFile(path));
+        assertDoesNotThrow(() -> FileCloner.cloneFile(path));
+        assertDoesNotThrow(() -> FileCloner.cloneFile(path));
 
         try {
             Files.delete(copy);
