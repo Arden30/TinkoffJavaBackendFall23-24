@@ -25,7 +25,6 @@ public class Task2Test {
             Files.delete(copy2);
             Files.delete(copy3);
         } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 }
