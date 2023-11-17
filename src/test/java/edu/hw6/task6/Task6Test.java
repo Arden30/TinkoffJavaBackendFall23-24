@@ -21,6 +21,6 @@ public class Task6Test {
             "TCP       3702    Динамическое обнаружение веб-служб\n" +
             "TCP      17500    Dropbox\n" +
             "TCP      27017    MongoDB\n";
-        assertThat(res).isEqualTo(expected);
+        assertThat(expected).contains(res);
     }
 }

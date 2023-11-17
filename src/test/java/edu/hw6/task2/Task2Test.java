@@ -20,9 +20,12 @@ public class Task2Test {
         FileCloner.cloneFile(path);
         FileCloner.cloneFile(path);
 
-        assertThat(Files.exists(copy)).isTrue();
-        assertThat(Files.exists(copy2)).isTrue();
-        assertThat(Files.exists(copy3)).isTrue();
+        boolean flag = Files.exists(copy);
+        boolean flag2 = Files.exists(copy2);
+        boolean flag3 = Files.exists(copy3);
+        assertThat(flag).isTrue();
+        assertThat(flag2).isTrue();
+        assertThat(flag3).isTrue();
 
         try {
             Files.delete(copy);
