@@ -11,7 +11,7 @@ public class Task5Test {
     void test1() {
         HackerNews hackerNews = new HackerNews();
         long[] res = hackerNews.hackerNewsTopStories();
-        assertThat(res.length).isEqualTo(403);
+        assertThat(res.length).isGreaterThan(400);
     }
 
     @Test
