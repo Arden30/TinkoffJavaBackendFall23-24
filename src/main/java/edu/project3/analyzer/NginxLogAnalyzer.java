@@ -28,13 +28,6 @@ public class NginxLogAnalyzer {
         this.logParser = logParser;
     }
 
-//    public void analyzeLogs() {
-//        ParametersParser parametersParser = new ParametersParser();
-//        Map<Option, String> parameters = parametersParser.parse();
-//        FormatADOC formatADOC = new FormatADOC();
-//        formatADOC.print(parameters);
-//    }
-
     public Map<Integer, Long> errorCodes() {
         Map<Integer, Long> res = logs.stream()
             .collect(Collectors.groupingBy(LogRecord::status, Collectors.counting()));
@@ -123,6 +116,7 @@ public class NginxLogAnalyzer {
     public String fileName() {
         StringBuilder stringBuilder = new StringBuilder();
         List<Path> paths = logParser.getAllPaths();
+        paths.sort(Comparator.naturalOrder());
         for (Path path : paths) {
             stringBuilder.append(path.getFileName()).append(" ");
         }
