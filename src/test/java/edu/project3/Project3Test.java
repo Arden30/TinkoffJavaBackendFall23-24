@@ -40,7 +40,7 @@ public class Project3Test {
     @DisplayName("Test adoc report")
     void testAdocReport() {
         String[] args = {
-            "--path", "src\\test\\java\\edu\\project3\\test*",
+            "--path", ".\\src\\test\\java\\edu\\project3\\test*",
             "--format", "adoc"
         };
 

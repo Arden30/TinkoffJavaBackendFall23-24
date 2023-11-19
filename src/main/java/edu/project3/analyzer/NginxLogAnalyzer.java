@@ -21,6 +21,7 @@ public class NginxLogAnalyzer {
     private final Map<Option, String> parameters;
 
     private final LogParser logParser;
+
     public NginxLogAnalyzer(List<LogRecord> logs, Map<Option, String> parameters, LogParser logParser) {
         this.parameters = parameters;
         this.logs = logsFromDateToDate(logs);
