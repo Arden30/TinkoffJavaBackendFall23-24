@@ -23,7 +23,7 @@ public class ProgramRunner {
         LogParser logParser = new LogParser(parameters.get(Option.PATH));
         List<LogRecord> list = logParser.parseAllLogs();
 
-        NginxLogAnalyzer logAnalyzer = new NginxLogAnalyzer(list, parameters);
+        NginxLogAnalyzer logAnalyzer = new NginxLogAnalyzer(list, parameters, logParser);
 
         Format formatMD = new FormatMD();
         Format formatADOC = new FormatADOC();

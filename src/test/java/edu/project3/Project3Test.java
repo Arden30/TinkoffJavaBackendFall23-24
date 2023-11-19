@@ -16,6 +16,27 @@ public class Project3Test {
     private final static String ADOC_REPORT = "src/test/java/edu/project3/report.adoc";
 
     @Test
+    @DisplayName("Test markdown report")
+    void testMarkdownReport() {
+        String[] args = {
+            "--path", "https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_logs/nginx_logs",
+            "--from", "2015-05-17",
+            "--to", "2015-05-20",
+            "--format", "markdown"
+        };
+
+        try {
+            String expected = Files.readString(Paths.get(CORRECT_MARKDOWN_REPORT));
+            ProgramRunner programRunner = new ProgramRunner(args);
+            programRunner.run();
+            String res = Files.readString(Paths.get(MARKDOWN_REPORT));
+            assertThat(res).isEqualTo(expected);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
     @DisplayName("Test adoc report")
     void testAdocReport() {
         String[] args = {
@@ -23,54 +44,14 @@ public class Project3Test {
             "--format", "adoc"
         };
 
-        String expected;
         try {
-            expected = Files.readString(Paths.get(CORRECT_ADOC_REPORT));
-        } catch (IOException ignored) {
-            expected = "";
+            String expected = Files.readString(Paths.get(CORRECT_ADOC_REPORT));
+            ProgramRunner programRunner = new ProgramRunner(args);
+            programRunner.run();
+            String res = Files.readString(Paths.get(ADOC_REPORT));
+            assertThat(res).isEqualTo(expected);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-
-        ProgramRunner programRunner = new ProgramRunner(args);
-        programRunner.run();
-
-        String res;
-        try {
-            res = Files.readString(Paths.get(ADOC_REPORT));
-        } catch (IOException ignored) {
-            res = " ";
-        }
-
-        assertThat(res).isEqualTo(expected);
-    }
-
-    @Test
-    @DisplayName("Test markdown report")
-    void testMarkdownReport() {
-        String[] args = {
-            "--path",
-            "https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/nginx_logs/nginx_logs",
-            "--from", "2015-05-17",
-            "--to", "2015-05-20",
-            "--format", "markdown"
-        };
-
-        String expected;
-        try {
-            expected = Files.readString(Paths.get(CORRECT_MARKDOWN_REPORT));
-        } catch (IOException ignored) {
-            expected = "";
-        }
-
-        ProgramRunner programRunner = new ProgramRunner(args);
-        programRunner.run();
-
-        String res;
-        try {
-            res = Files.readString(Paths.get(MARKDOWN_REPORT));
-        } catch (IOException ignored) {
-            res = " ";
-        }
-
-        assertThat(res).isEqualTo(expected);
     }
 }

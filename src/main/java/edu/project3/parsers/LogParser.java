@@ -28,7 +28,7 @@ public class LogParser {
     private final String source;
     private final static List<String> PATTERNS = new ArrayList<>();
     private final static List<Path> ALL_PATHS = new ArrayList<>();
-    private static URI uri;
+    private URI uri;
 
     static {
         String remoteAddr = "(\\d{1,4}\\.){3}(\\d{1,4})";

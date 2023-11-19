@@ -20,9 +20,11 @@ public class NginxLogAnalyzer {
     private final List<LogRecord> logs;
     private final Map<Option, String> parameters;
 
-    public NginxLogAnalyzer(List<LogRecord> logs, Map<Option, String> parameters) {
+    private final LogParser logParser;
+    public NginxLogAnalyzer(List<LogRecord> logs, Map<Option, String> parameters, LogParser logParser) {
         this.parameters = parameters;
         this.logs = logsFromDateToDate(logs);
+        this.logParser = logParser;
     }
 
 //    public void analyzeLogs() {
@@ -119,7 +121,7 @@ public class NginxLogAnalyzer {
 
     public String fileName() {
         StringBuilder stringBuilder = new StringBuilder();
-        List<Path> paths = (new LogParser(parameters.get(Option.PATH))).getAllPaths();
+        List<Path> paths = logParser.getAllPaths();
         for (Path path : paths) {
             stringBuilder.append(path.getFileName()).append(" ");
         }

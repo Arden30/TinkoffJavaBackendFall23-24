@@ -4,7 +4,7 @@
 |Метрика |Значение
 
 |Файл(-ы)
-|nginx_logs 
+|test.log test1.log test123.log 
 
 |Начальная дата
 |-
