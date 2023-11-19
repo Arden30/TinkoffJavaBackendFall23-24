@@ -3,6 +3,7 @@ package edu.project3;
 import edu.project3.utils.ProgramRunner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -39,8 +40,10 @@ public class Project3Test {
     @Test
     @DisplayName("Test adoc report")
     void testAdocReport() {
+        String separator = File.separator;
+        String path = "src" + separator + "test" + separator + "java" + separator + "edu" + separator + "project3" + separator + "test*";
         String[] args = {
-            "--path", ".\\src\\test\\java\\edu\\project3\\test*",
+            "--path", path,
             "--format", "adoc"
         };
 
