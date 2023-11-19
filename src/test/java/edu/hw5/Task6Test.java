@@ -9,8 +9,8 @@ public class Task6Test {
     @DisplayName("Test 1")
     void test1() {
         String string = "achfdbaabgabcaabg";
-        String substring = "abc";
-        boolean contains = Task6.substring(string, substring);
+        String subsequence = "abc";
+        boolean contains = Task6.subsequence(string, subsequence);
 
         assertThat(contains).isTrue();
     }
@@ -18,19 +18,19 @@ public class Task6Test {
     @Test
     @DisplayName("Test 2")
     void test2() {
-        String string = "achfdbaabgabaabg";
-        String substring = "abc";
-        boolean contains = Task6.substring(string, substring);
+        String string = "achfdbaabgabaabgc";
+        String subsequence = "abc";
+        boolean contains = Task6.subsequence(string, subsequence);
 
-        assertThat(contains).isFalse();
+        assertThat(contains).isTrue();
     }
 
     @Test
     @DisplayName("Test 3")
     void test3() {
         String string = "ab";
-        String substring = "abc";
-        boolean contains = Task6.substring(string, substring);
+        String subsequence = "abc";
+        boolean contains = Task6.subsequence(string, subsequence);
 
         assertThat(contains).isFalse();
     }
@@ -39,9 +39,19 @@ public class Task6Test {
     @DisplayName("Test 4")
     void test4() {
         String string = "abc";
-        String substring = "abc";
-        boolean contains = Task6.substring(string, substring);
+        String subsequence = "abc";
+        boolean contains = Task6.subsequence(string, subsequence);
 
         assertThat(contains).isTrue();
+    }
+
+    @Test
+    @DisplayName("Test 5")
+    void test5() {
+        String string = "akjbhj";
+        String subsequence = "abc";
+        boolean contains = Task6.subsequence(string, subsequence);
+
+        assertThat(contains).isFalse();
     }
 }
