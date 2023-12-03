@@ -14,7 +14,7 @@ public class FixedThreadPool implements ThreadPool {
         threads = new Thread[threadsNum];
     }
 
-    public FixedThreadPool create(int threadsNum) {
+    public static FixedThreadPool create(int threadsNum) {
         return new FixedThreadPool(threadsNum);
     }
 
