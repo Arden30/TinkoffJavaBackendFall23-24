@@ -25,7 +25,15 @@ public class Task2Test {
                 fixedThreadPool.execute(() -> fibs[finalI] = Fibonacci.countFib(finalI));
             }
             System.out.println("Multithreading: " + (System.nanoTime() - start) / 1_000_000_000.0 + " sec");
-            assertThat(fibs).isEqualTo(fibAll);
+
+            boolean flag = true;
+            for (int i = 0; i < n; i++) {
+                if (fibs[i] != fibAll[i]) {
+                    flag = false;
+                    break;
+                }
+            }
+            assertThat(flag).isTrue();
         } catch (Exception e) {
             throw new RuntimeException();
         }
@@ -40,6 +48,13 @@ public class Task2Test {
             fibs[i] = Fibonacci.countFib(i);
         }
         System.out.println("Single thread: " + (System.nanoTime() - start) / 1_000_000_000.0 + " sec");
-        assertThat(fibs).isEqualTo(fibAll);
+        boolean flag = true;
+        for (int i = 0; i < n; i++) {
+            if (fibs[i] != fibAll[i]) {
+                flag = false;
+                break;
+            }
+        }
+        assertThat(flag).isTrue();
     }
 }
