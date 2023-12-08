@@ -29,7 +29,7 @@ public class StatsCollector {
             double sum = Arrays.stream(data).sum();
             double avg = Arrays.stream(data).average().orElse(0);
             double min = Arrays.stream(data).min().orElse(0);
-            double max = Arrays.stream(data).min().orElse(0);
+            double max = Arrays.stream(data).max().orElse(0);
             Metric metric = new Metric(name, sum, avg, min, max);
             metrics.add(metric);
         };
