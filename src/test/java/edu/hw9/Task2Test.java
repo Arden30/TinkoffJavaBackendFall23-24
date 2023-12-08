@@ -16,8 +16,8 @@ public class Task2Test {
     void test1() {
         String separator = File.separator;
         List<String> expected = List.of(
-            "src" + separator + "main" + separator + "java" + separator + "edu" + separator + "project3" + separator + "formatters",
             "src" + separator + "main" + separator + "java" + separator + "edu" + separator + "project3" + separator + "utils",
+            "src" + separator + "main" + separator + "java" + separator + "edu" + separator + "project3" + separator + "formatters",
             "src" + separator + "main" + separator + "java" + separator + "edu" + separator + "project3"
         );
 
