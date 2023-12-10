@@ -13,7 +13,7 @@ public class Task2Test {
         int n = 5;
         int expected = 120;
 
-        int res = ParallelFactorial.factorial(n);
+        long res = ParallelFactorial.factorial(n);
 
         assertThat(res).isEqualTo(expected);
     }
@@ -24,7 +24,7 @@ public class Task2Test {
         int n = 0;
         int expected = 1;
 
-        int res = ParallelFactorial.factorial(n);
+        long res = ParallelFactorial.factorial(n);
 
         assertThat(res).isEqualTo(expected);
     }

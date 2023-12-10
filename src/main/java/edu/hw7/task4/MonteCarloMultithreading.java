@@ -4,7 +4,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MonteCarloMultithreading extends Thread {
     private double circleCount = 0;
-    private double totalCount = 0;
     private final long n;
 
     public MonteCarloMultithreading(long n) {
@@ -14,7 +13,7 @@ public class MonteCarloMultithreading extends Thread {
     @Override
     public void run() {
         double r = 1;
-        while (totalCount++ < n) {
+        for (double totalCount = 0; totalCount < n; totalCount++) {
             double x = ThreadLocalRandom.current().nextDouble(0, 2 * r);
             double y = ThreadLocalRandom.current().nextDouble(0, 2 * r);
 
