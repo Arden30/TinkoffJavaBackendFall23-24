@@ -42,7 +42,7 @@ public class ReadWriteLockFinderService implements PersonDataBase {
 
     @Override
     public List<Person> findByName(String name) {
-        lock.writeLock().lock();
+        lock.readLock().lock();
         try {
             List<Person> res = new ArrayList<>();
             for (Map.Entry<Integer, Person> person : database.entrySet()) {
@@ -52,13 +52,13 @@ public class ReadWriteLockFinderService implements PersonDataBase {
             }
             return res;
         } finally {
-            lock.writeLock().unlock();
+            lock.readLock().unlock();
         }
     }
 
     @Override
     public List<Person> findByAddress(String address) {
-        lock.writeLock().lock();
+        lock.readLock().lock();
         try {
             List<Person> res = new ArrayList<>();
             for (Map.Entry<Integer, Person> person : database.entrySet()) {
@@ -68,13 +68,13 @@ public class ReadWriteLockFinderService implements PersonDataBase {
             }
             return res;
         } finally {
-            lock.writeLock().unlock();
+            lock.readLock().unlock();
         }
     }
 
     @Override
     public List<Person> findByPhone(String phone) {
-        lock.writeLock().lock();
+        lock.readLock().lock();
         try {
             List<Person> res = new ArrayList<>();
             for (Map.Entry<Integer, Person> person : database.entrySet()) {
@@ -84,7 +84,7 @@ public class ReadWriteLockFinderService implements PersonDataBase {
             }
             return res;
         } finally {
-            lock.writeLock().unlock();
+            lock.readLock().unlock();
         }
     }
 
