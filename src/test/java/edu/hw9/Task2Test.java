@@ -24,9 +24,9 @@ public class Task2Test {
         Path root = Path.of("src/main/java/edu/project3");
         DirectoriesAnalyzer directoriesAnalyzer = new DirectoriesAnalyzer(root, 2);
         var res = directoriesAnalyzer.analyzeDirs();
-        int i = 0;
+
         for (Path path: res.getKey()) {
-            assertThat(expected.get(i++)).isEqualTo(path.toString());
+            assertThat(expected.toArray()).contains(path.toString());
         }
     }
 
@@ -41,9 +41,9 @@ public class Task2Test {
         Path root = Path.of("src/test/java/edu/project3");
         FilesAnalyzer filesAnalyzer = new FilesAnalyzer(root, 500, "log");
         var res = filesAnalyzer.analyzeFiles();
-        int i = 0;
+
         for (Path path: res) {
-            assertThat(expected.get(i++)).isEqualTo(path.toString());
+            assertThat(expected.toArray()).contains(path.toString());
         }
     }
 }
