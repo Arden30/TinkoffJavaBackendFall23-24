@@ -15,8 +15,13 @@ public class FileCloner {
     public static void cloneFile(Path path) {
         try {
             String file = path.getFileName().toString();
-            String fileName = file.split(PATTERN)[0];
-            String extension = "." + file.split(PATTERN)[1];
+            String[] arrSpl = file.split(PATTERN);
+            String fileName = arrSpl[0];
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 1; i < arrSpl.length; i++) {
+                stringBuilder.append(".").append(file.split(PATTERN)[i]);
+            }
+            String extension = stringBuilder.toString();
 
             String copyName = fileName + COPY + extension;
             Path parent = path.getParent();
