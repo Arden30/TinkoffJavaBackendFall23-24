@@ -38,11 +38,11 @@ public class HackerNews {
 
             if (matcher.find()) {
                 return matcher.group().split(":")[1];
+            } else {
+                throw new RuntimeException("Title was not found");
             }
-
-            return "Title was not found";
         } catch (URISyntaxException | InterruptedException | IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e.getMessage());
         }
     }
 

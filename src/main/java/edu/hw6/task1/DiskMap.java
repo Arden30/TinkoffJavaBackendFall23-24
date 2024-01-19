@@ -14,32 +14,35 @@ import org.jetbrains.annotations.Nullable;
 
 public class DiskMap implements Map<String, String> {
     private final Map<String, String> disk = new HashMap<>();
-    private final Path path = Path.of("src/test/java/edu/hw6/task1/disk.txt");
+    private final Path path;
+
+    public DiskMap(Path path) {
+        this.path = path;
+    }
 
     public Path getPath() {
         return path;
     }
 
-    public void saveToFile() {
+    public void saveToFile() throws IOException {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            for (String key : disk.keySet()) {
-                writer.write(key + ":" + disk.get(key) + "\n");
+            for (Map.Entry<String, String> entry : disk.entrySet()) {
+                writer.write(entry.getKey() + ":" + entry.getValue() + "\n");
             }
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 
-    public void downloadFromFile() {
+    public void downloadFromFile() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             disk.clear();
             String str;
             while ((str = reader.readLine()) != null) {
                 String[] arr = str.split(":");
+                if (arr.length != 2) {
+                    throw new IOException("Incorrect line from the file (must match pattern key:value)");
+                }
                 disk.put(arr[0], arr[1]);
             }
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 
