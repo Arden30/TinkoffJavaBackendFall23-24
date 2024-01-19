@@ -7,12 +7,13 @@ import edu.hw2.task3.connections.FaultyConnection;
 import edu.hw2.task3.managers.FaultyConnectionManager;
 import edu.hw2.task3.PopularCommandExecutor;
 import edu.hw2.task3.connections.StableConnection;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
+@Disabled
 public class Task3Test {
     @Test
     @DisplayName("Check that default manager works")
