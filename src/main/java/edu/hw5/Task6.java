@@ -8,10 +8,14 @@ public class Task6 {
 
     }
 
-    public static boolean substring(String string, String substring) {
-        Pattern pattern = Pattern.compile(substring);
+    public static boolean subsequence(String string, String subsequence) {
+        Pattern pattern = Pattern.compile("[^" + subsequence + "]");
         Matcher matcher = pattern.matcher(string);
 
-        return matcher.find();
+        String seq = matcher.replaceAll("");
+        Pattern subseq = Pattern.compile(subsequence);
+        Matcher res = subseq.matcher(seq);
+
+        return res.find();
     }
 }

@@ -20,8 +20,7 @@ public final class PopularCommandExecutor {
     void tryExecute(String command) {
         int cnt = 0;
         while (true) {
-            try {
-                Connection connection = manager.getConnection();
+            try (Connection connection = manager.getConnection()) {
                 connection.execute(command);
                 break;
             } catch (ConnectionException e) {

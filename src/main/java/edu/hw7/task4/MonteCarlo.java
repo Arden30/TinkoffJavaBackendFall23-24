@@ -14,7 +14,7 @@ public class MonteCarlo {
         double totalCount = 0;
         double circleCount = 0;
 
-        while (totalCount++ < n) {
+        for (; totalCount < n; totalCount++) {
             double x = ThreadLocalRandom.current().nextDouble(0, 2 * r);
             double y = ThreadLocalRandom.current().nextDouble(0, 2 * r);
 

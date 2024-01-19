@@ -8,41 +8,31 @@ import java.util.Map;
 public class FinderService implements PersonDataBase {
 
     private final Map<Integer, Person> database;
-    private final Map<Person, String> names;
-    private final Map<Person, String> addresses;
-    private final Map<Person, String> phones;
 
     public FinderService() {
         database = new HashMap<>();
-        names = new HashMap<>();
-        addresses = new HashMap<>();
-        phones = new HashMap<>();
     }
 
     @Override
     public synchronized void add(Person person) {
-        database.put(person.id(), person);
-        names.put(person, person.name());
-        addresses.put(person, person.address());
-        phones.put(person, person.phoneNumber());
+        if (!database.containsKey(person.id())) {
+            database.put(person.id(), person);
+        } else {
+            throw new RuntimeException("Person with such id exists!");
+        }
     }
 
     @Override
     public synchronized void delete(int id) {
-        Person person = database.remove(id);
-        if (person != null) {
-            names.remove(person);
-            addresses.remove(person);
-            phones.remove(person);
-        }
+        database.remove(id);
     }
 
     @Override
     public synchronized List<Person> findByName(String name) {
         List<Person> res = new ArrayList<>();
-        for (Map.Entry<Person, String> person : names.entrySet()) {
-            if (person.getValue().equals(name)) {
-                res.add(person.getKey());
+        for (Map.Entry<Integer, Person> person : database.entrySet()) {
+            if (person.getValue().name().equals(name)) {
+                res.add(person.getValue());
             }
         }
         return res;
@@ -51,9 +41,9 @@ public class FinderService implements PersonDataBase {
     @Override
     public synchronized List<Person> findByAddress(String address) {
         List<Person> res = new ArrayList<>();
-        for (Map.Entry<Person, String> person : addresses.entrySet()) {
-            if (person.getValue().equals(address)) {
-                res.add(person.getKey());
+        for (Map.Entry<Integer, Person> person : database.entrySet()) {
+            if (person.getValue().address().equals(address)) {
+                res.add(person.getValue());
             }
         }
         return res;
@@ -62,9 +52,9 @@ public class FinderService implements PersonDataBase {
     @Override
     public synchronized List<Person> findByPhone(String phone) {
         List<Person> res = new ArrayList<>();
-        for (Map.Entry<Person, String> person : phones.entrySet()) {
-            if (person.getValue().equals(phone)) {
-                res.add(person.getKey());
+        for (Map.Entry<Integer, Person> person : database.entrySet()) {
+            if (person.getValue().phoneNumber().equals(phone)) {
+                res.add(person.getValue());
             }
         }
         return res;

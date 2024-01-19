@@ -4,16 +4,12 @@ import edu.hw2.task3.exceptions.ConnectionException;
 import static edu.hw2.task3.managers.ConnectionManager.LOGGER;
 
 public class FaultyConnection implements Connection {
-    private final double chance;
-    private static final double CHECKER = 0.8;
 
-    public FaultyConnection(double chance) {
-        this.chance = chance;
-    }
+    private static final double LIMIT = 0.99;
 
     @Override
     public void execute(String command) throws ConnectionException {
-        if (chance <= CHECKER) {
+        if (Math.random() >= LIMIT) {
             LOGGER.info(" '" + command + "' " + "was executed!");
         } else {
             throw new ConnectionException("Connection lost");
@@ -24,4 +20,5 @@ public class FaultyConnection implements Connection {
     public void close() {
         LOGGER.info("Connection closed");
     }
+
 }

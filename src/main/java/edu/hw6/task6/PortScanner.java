@@ -25,14 +25,22 @@ public class PortScanner {
     public String infoAboutUsedPorts() {
         StringBuilder res = new StringBuilder("Протокол   Порт   Сервис\n");
         for (int port = 0; port < MAX_PORT; port++) {
-            if (scanTCP(port)) {
-                if (PORTS.containsKey(port)) {
-                    String str = String.format("TCP %10d    %s\n", port, PORTS.get(port));
+            if (scanTCP(port) && scanUDP(port)) {
+                String p = PORTS.getOrDefault(port, null);
+                if (p != null) {
+                    String str = String.format("UDP+TCP %10d    %s\n", port, p);
+                    res.append(str);
+                }
+            } else if (scanTCP(port)) {
+                String p = PORTS.getOrDefault(port, null);
+                if (p != null) {
+                    String str = String.format("TCP %10d    %s\n", port, p);
                     res.append(str);
                 }
             } else if (scanUDP(port)) {
-                if (PORTS.containsKey(port)) {
-                    String str = String.format("UDP %10d    %s\n", port, PORTS.get(port));
+                String p = PORTS.getOrDefault(port, null);
+                if (p != null) {
+                    String str = String.format("UDP %10d    %s\n", port, p);
                     res.append(str);
                 }
             }
